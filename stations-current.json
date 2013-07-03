@@ -1,5 +1,5 @@
 {
-  "executionTime": "2013-07-02 10:04:01 PM", 
+  "executionTime": "2013-07-02 10:14:01 PM", 
   "stationBeanList": [
     {
       "availableDocks": 14, 
@@ -142,7 +142,7 @@
       "location": "1010 S. Loomis St"
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "Chicago", 
       "altitude": "", 
@@ -157,7 +157,7 @@
       "landMark": "154", 
       "latitude": 41.909591929999998, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 4, 
       "id": 20, 
       "location": "1009 W. Weed st"
     }, 
@@ -582,7 +582,7 @@
       "location": "932 N. Wells St."
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -597,7 +597,7 @@
       "landMark": "50", 
       "latitude": 41.889180000000003, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 3, 
       "id": 47, 
       "location": "5 E. Kinzie St."
     }, 
@@ -822,7 +822,7 @@
       "location": "1639 W. Armitage Ave."
     }, 
     {
-      "availableDocks": 14, 
+      "availableDocks": 16, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -837,7 +837,7 @@
       "landMark": "31", 
       "latitude": 41.867172995200001, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 3, 
       "id": 59, 
       "location": "1210 S. Wabash Ave."
     }, 
@@ -1102,7 +1102,7 @@
       "location": "402 E. Monroe St."
     }, 
     {
-      "availableDocks": 15, 
+      "availableDocks": 16, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -1117,7 +1117,7 @@
       "landMark": "301", 
       "latitude": 41.881582399999999, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 4, 
       "id": 77, 
       "location": "8 S. Clinton St."
     }, 
@@ -1182,7 +1182,7 @@
       "location": "820 W. Grand Ave."
     }, 
     {
-      "availableDocks": 3, 
+      "availableDocks": 6, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -1197,7 +1197,7 @@
       "landMark": "42", 
       "latitude": 41.900960390000002, 
       "statusKey": 1, 
-      "availableBikes": 10, 
+      "availableBikes": 7, 
       "id": 85, 
       "location": "140 E. Oak St."
     }, 
