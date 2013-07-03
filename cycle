@@ -15,7 +15,7 @@ def update_stations():
         patch = JsonPatch.from_string(line)
         patch.apply(stations, in_place=True)
     with open('stations-current.json', 'w') as fp:
-        json.dump(stations, fp)
+        json.dump(stations, fp, indent=2)
 
 if not os.path.exists('stations-current.json'):
     update_stations()
@@ -31,5 +31,5 @@ if len(json_patch.patch) > 0:
         fp.write('\n')
 
     with open('stations-current.json', 'w') as fp:
-        json.dump(current, fp)
+        json.dump(current, fp, indent=2)
         fp.write('\n')
