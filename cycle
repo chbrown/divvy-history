@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+import os
+import json
+import requests
+from jsonpatch import JsonPatch
+
+# stations-epoch.json -- some beginning point to enact patches on top of
+# patches.json -- list of json-patches changes to get from epoch to current
+# stations-current.json -- the current stations
+
+
+def update_stations():
+    stations = json.load(open('stations-epoch.json'))
+    for line in open('patches.json'):
+        patch = JsonPatch.from_string(line)
+        patch.apply(stations, in_place=True)
+    with open('stations-current.json', 'w') as fp:
+        json.dump(stations, fp)
+
+if not os.path.exists('stations-current.json'):
+    update_stations()
+
+previous = json.load(open('stations-current.json'))
+current = requests.get('http://divvybikes.com/stations/json').json()
+
+json_patch = JsonPatch.from_diff(previous, current)
+
+if len(json_patch.patch) > 0:
+    with open('patches.json', 'a') as fp:
+        json.dump(json_patch.patch, fp)
+        fp.write('\n')
+
+    with open('stations-current.json', 'w') as fp:
+        json.dump(current, fp)
+        fp.write('\n')

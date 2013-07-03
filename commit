@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+git commit -a -m "$(date +'%Y-%m-%d %H:%M:%S')"
