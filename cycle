@@ -25,7 +25,8 @@ current = requests.get('http://divvybikes.com/stations/json').json()
 
 json_patch = JsonPatch.from_diff(previous, current)
 
-if len(json_patch.patch) > 0:
+if len(json_patch.patch) > 1:
+    # len == 1 means only the "executionTime" date changed
     with open('patches.json', 'a') as fp:
         json.dump(json_patch.patch, fp)
         fp.write('\n')
