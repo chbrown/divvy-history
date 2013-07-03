@@ -1,8 +1,8 @@
 {
-  "executionTime": "2013-07-02 11:06:02 PM", 
+  "executionTime": "2013-07-03 12:55:01 AM", 
   "stationBeanList": [
     {
-      "availableDocks": 14, 
+      "availableDocks": 12, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -17,7 +17,7 @@
       "landMark": "30", 
       "latitude": 41.873958062900002, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 7, 
       "id": 5, 
       "location": "620 S. State St."
     }, 
@@ -142,7 +142,7 @@
       "location": "1010 S. Loomis St"
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 12, 
       "totalDocks": 15, 
       "city": "Chicago", 
       "altitude": "", 
@@ -157,12 +157,12 @@
       "landMark": "154", 
       "latitude": 41.909591929999998, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 1, 
       "id": 20, 
       "location": "1009 W. Weed st"
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 8, 
       "totalDocks": 15, 
       "city": "Chicago", 
       "altitude": "", 
@@ -177,12 +177,12 @@
       "landMark": "157", 
       "latitude": 41.877726129999999, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 7, 
       "id": 21, 
       "location": "1103 W.Jackson Blvd"
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -197,7 +197,7 @@
       "landMark": "160", 
       "latitude": 41.869482099999999, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 6, 
       "id": 22, 
       "location": "1134 W. Taylor St"
     }, 
@@ -262,7 +262,7 @@
       "location": "150 E.Pearson st"
     }, 
     {
-      "availableDocks": 10, 
+      "availableDocks": 11, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -277,7 +277,7 @@
       "landMark": "51", 
       "latitude": 41.891019999999997, 
       "statusKey": 1, 
-      "availableBikes": 12, 
+      "availableBikes": 9, 
       "id": 26, 
       "location": ""
     }, 
@@ -382,7 +382,7 @@
       "location": "805 N. Fraklin st"
     }, 
     {
-      "availableDocks": 12, 
+      "availableDocks": 10, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -397,7 +397,7 @@
       "landMark": "76", 
       "latitude": 41.874639999999999, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 8, 
       "id": 32, 
       "location": "550 S. Racine"
     }, 
@@ -422,7 +422,7 @@
       "location": "360 S State st"
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 10, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -437,7 +437,7 @@
       "landMark": "124", 
       "latitude": 41.926755987500002, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 5, 
       "id": 34, 
       "location": "2432 N. Cannon Dr."
     }, 
@@ -542,7 +542,7 @@
       "location": ""
     }, 
     {
-      "availableDocks": 12, 
+      "availableDocks": 13, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -557,7 +557,7 @@
       "landMark": "40", 
       "latitude": 41.876065599, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 4, 
       "id": 45, 
       "location": "420 w. Michigan"
     }, 
@@ -582,7 +582,7 @@
       "location": "932 N. Wells St."
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -597,7 +597,7 @@
       "landMark": "50", 
       "latitude": 41.889180000000003, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 5, 
       "id": 47, 
       "location": "5 E. Kinzie St."
     }, 
@@ -662,7 +662,7 @@
       "location": ""
     }, 
     {
-      "availableDocks": 25, 
+      "availableDocks": 26, 
       "totalDocks": 27, 
       "city": "", 
       "altitude": "", 
@@ -677,12 +677,12 @@
       "landMark": "5", 
       "latitude": 41.884576228, 
       "statusKey": 1, 
-      "availableBikes": 2, 
+      "availableBikes": 1, 
       "id": 51, 
       "location": "120 W. Randolph St."
     }, 
     {
-      "availableDocks": 15, 
+      "availableDocks": 17, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -697,7 +697,7 @@
       "landMark": "43", 
       "latitude": 41.886058115099999, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 4, 
       "id": 52, 
       "location": "203 N. Michigan Ave."
     }, 
@@ -822,7 +822,7 @@
       "location": "1639 W. Armitage Ave."
     }, 
     {
-      "availableDocks": 16, 
+      "availableDocks": 15, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -837,12 +837,12 @@
       "landMark": "31", 
       "latitude": 41.867172995200001, 
       "statusKey": 1, 
-      "availableBikes": 3, 
+      "availableBikes": 4, 
       "id": 59, 
       "location": "1210 S. Wabash Ave."
     }, 
     {
-      "availableDocks": 11, 
+      "availableDocks": 14, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -857,7 +857,7 @@
       "landMark": "58", 
       "latitude": 41.910578034899999, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 4, 
       "id": 60, 
       "location": "1575 N. Dayton St."
     }, 
@@ -1002,7 +1002,7 @@
       "location": "1003 W. Lake St."
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -1017,7 +1017,7 @@
       "landMark": "148", 
       "latitude": 41.860121377399999, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 6, 
       "id": 72, 
       "location": "1 W. 16th St."
     }, 
@@ -1162,7 +1162,7 @@
       "location": "48 W. Washington St."
     }, 
     {
-      "availableDocks": 13, 
+      "availableDocks": 12, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -1177,7 +1177,7 @@
       "landMark": "33", 
       "latitude": 41.891887949999997, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 84, 
       "location": "820 W. Grand Ave."
     }, 
@@ -1222,7 +1222,7 @@
       "location": "811 N. Noble St."
     }, 
     {
-      "availableDocks": 14, 
+      "availableDocks": 11, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -1237,7 +1237,7 @@
       "landMark": "", 
       "latitude": 41.925562579999998, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 7, 
       "id": 87, 
       "location": "2411 N. Racine"
     }, 
