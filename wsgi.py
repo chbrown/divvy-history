@@ -15,5 +15,5 @@ def linecount(filename):
 @mako_view('index.mako')
 def index():
     filenames = ['dates/' + filename for filename in os.listdir('dates')]
-    files = [dict(name=filename, lines=linecount(filename)) for filename in filenames]
+    files = [dict(name=filename, lines=linecount(filename)) for filename in sorted(filenames)]
     return dict(files=files)
