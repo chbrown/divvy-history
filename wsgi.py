@@ -15,8 +15,8 @@ from logger import logger
 schedule = Scheduler()
 schedule.start()
 schedule.add_interval_job(fetch, minutes=1)
-# schedule.add_interval_job(sync, hours=6)
-schedule.add_interval_job(sync, minutes=5)
+schedule.add_interval_job(sync, hours=6)
+# schedule.add_interval_job(sync, minutes=5)
 
 now = datetime.datetime.utcnow()
 logger.debug('Scheduler initialized. %s', now.isoformat())
