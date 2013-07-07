@@ -17,6 +17,10 @@ Here's my `crontab -l` on an EC2 machine:
 `patch` runs every minute, `push` runs every six hours.
 `push` could easily run much more often, but I didn't want to flood my GitHub record with 1,440 commits every day.
 
+Now serving at:
+
+http://divvy.eu01.aws.af.cm/
+
 ## Patches:
 
 [`patches.json`](patches.json) follows [RFC 6902](http://tools.ietf.org/html/rfc6902) for describing JSON patches with JSON.
@@ -28,7 +32,6 @@ Until 2013-07-05, there was not necessarily one line (one patch) per minute; if 
 1. After retrofitting is complete and we're entirely on the daily schedule:
     * Delete `patch`
     * Update crontab (to use `fetch` instead of `patch`)
-    * Remove "requests" from `requirements.txt`
 
 ## License
 

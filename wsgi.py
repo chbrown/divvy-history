@@ -1,16 +1,25 @@
 import os
+import sys
 import json
-import urllib
-from datetime import datetime
-from jsonpatch import JsonPatch
 from apscheduler.scheduler import Scheduler
 from bottle import Bottle, mako_view
+
+sys.path.insert(0, '.')
+from fetch import fetch
+from push import push
+
+schedule = Scheduler()
+schedule.start()
+schedule.add_interval_job(fetch, minutes=1)
+schedule.add_interval_job(push, hours=6)
+
+
 application = Bottle()
 
 
-def linecount(filename):
+def linecount(filepath):
     lines = -1
-    with open(filename, 'rb') as fp:
+    with open(filepath, 'rb') as fp:
         for lines, _ in enumerate(fp):
             pass
     return lines
@@ -56,44 +65,10 @@ def dot():
     return dict(body=body)
 
 
-def fetch():
-    print "Fetching", datetime.utcnow().isoformat()
-
-    url = 'http://divvybikes.com/stations/json'
-
-    # set date (e.g., '2013-07-06')
-    date = datetime.utcnow().strftime('%Y-%m-%d')
-    date_stations = os.path.join('dates', date + '.json')
-    date_patches = os.path.join('dates', date + '.patches')
-
-    # basic process:
-    # 1. open the local stations/json file
-    # 2. apply all the patches
-    # 3. get the most recent stations/json file from the web
-    # 4. write the patch for the current state
-
-    if not os.path.exists(date_stations):
-        filepath, http_message = urllib.urlretrieve(url)
-        os.rename(filepath, date_stations)
-    else:
-        # load beginning-of-day patches
-        old_stations = json.load(open(date_stations))
-        with open(date_patches, 'a+') as fp:
-            # apply patches, one by one
-            for line in open(date_patches, 'r'):
-                patch = JsonPatch.from_string(line)
-                patch.apply(old_stations, in_place=True)
-
-            # get the bleeding edge (changes in the last minute)
-            filepath, http_message = urllib.urlretrieve(url)
-            current_stations = json.load(open(filepath))
-            json_patch = JsonPatch.from_diff(old_stations, current_stations)
-
-            if len(json_patch.patch) > 0:
-                json.dump(json_patch.patch, fp)
-                fp.write('\n')
-
-
-schedule = Scheduler()
-schedule.start()
-schedule.add_interval_job(fetch, minutes=1)
+@application.route('/repos')
+@mako_view('code.mako')
+def repos():
+    repos = [repo.name for repo in gh.get_user().get_repos()]
+    body = json.dumps(repos, indent=2)
+    # repo.edit(has_wiki=False)
+    return dict(body=body)
