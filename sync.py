@@ -29,11 +29,12 @@ def put_file(file_data, file_path, sha=None):
     headers = dict(github.headers.items() + [('Content-type', 'application/json')])
     data = json.dumps(params)
     response = requests.put(github.root + url, headers=headers, data=data)
+    result = response.json()
     logger.debug('PUT %s: %d', url, response.status_code)
     logger.debug('req headers: %s', github.inspect(response.request.headers))
-    logger.debug('req body: %s', response.request.body)
+    # logger.debug('req body: %s', response.request.body)
     logger.debug('res headers: %s', github.inspect(response.headers))
-    logger.debug('res body: %s', response.text)
+    logger.debug('res body: %s', github.inspect(result))
 
 
 def sync():

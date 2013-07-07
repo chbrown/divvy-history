@@ -1,5 +1,5 @@
 bind = '0.0.0.0:5080'
-debug = True
+# debug = True
 accesslog = '-'
 errorlog = '-'
 loglevel = 'debug'  # e.g.: debug info warning error critical
