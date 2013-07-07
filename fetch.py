@@ -2,17 +2,19 @@
 import os
 import json
 import urllib
-from datetime import datetime
+import datetime
 from jsonpatch import JsonPatch
+from logger import logger
 
 
 def fetch():
-    print 'Fetching', datetime.utcnow().isoformat()
+    now = datetime.datetime.utcnow()
+    logger.debug('Fetching started: %s', now.isoformat())
 
     url = 'http://divvybikes.com/stations/json'
 
     # set date (e.g., '2013-07-06')
-    date = datetime.utcnow().strftime('%Y-%m-%d')
+    date = now.strftime('%Y-%m-%d')
     date_stations = os.path.join('dates', date + '.json')
     date_patches = os.path.join('dates', date + '.patches')
 
@@ -25,14 +27,16 @@ def fetch():
     if not os.path.exists(date_stations):
         filepath, http_message = urllib.urlretrieve(url)
         os.rename(filepath, date_stations)
+        logger.debug('Created file: %s', date_stations)
     else:
         # load beginning-of-day patches
         old_stations = json.load(open(date_stations))
         with open(date_patches, 'a+') as fp:
             # apply patches, one by one
-            for line in open(date_patches, 'r'):
+            for line_i, line in enumerate(date_patches):
                 patch = JsonPatch.from_string(line)
                 patch.apply(old_stations, in_place=True)
+            logger.debug('Read %d patches from %s', (line_i, date_patches))
 
             # get the bleeding edge (changes in the last minute)
             filepath, http_message = urllib.urlretrieve(url)
@@ -42,6 +46,7 @@ def fetch():
             if len(json_patch.patch) > 0:
                 json.dump(json_patch.patch, fp)
                 fp.write('\n')
+            logger.debug('Added patch with %d changes to %s', (len(json_patch.patch), date_patches))
 
 if __name__ == '__main__':
     fetch()
