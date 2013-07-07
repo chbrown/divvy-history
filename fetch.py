@@ -7,7 +7,7 @@ from jsonpatch import JsonPatch
 
 
 def fetch():
-    print "Fetching", datetime.utcnow().isoformat()
+    print 'Fetching', datetime.utcnow().isoformat()
 
     url = 'http://divvybikes.com/stations/json'
 

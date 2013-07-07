@@ -6,12 +6,13 @@ from bottle import Bottle, mako_view
 
 sys.path.insert(0, '.')
 from fetch import fetch
-from push import push
+from sync import sync
 
 schedule = Scheduler()
 schedule.start()
 schedule.add_interval_job(fetch, minutes=1)
-schedule.add_interval_job(push, hours=6)
+# schedule.add_interval_job(sync, hours=6)
+schedule.add_interval_job(sync, minutes=15)
 
 
 application = Bottle()
@@ -50,11 +51,11 @@ def env():
     return dict(body=body)
 
 
-@application.route('/config')
-@mako_view('code.mako')
-def config():
-    body = open('gunicorn.config').read()
-    return dict(body=body)
+# @application.route('/config')
+# @mako_view('code.mako')
+# def config():
+#     body = open('gunicorn.config').read()
+#     return dict(body=body)
 
 
 @application.route('/dot')
@@ -62,13 +63,4 @@ def config():
 def dot():
     files = os.listdir('.')
     body = json.dumps(files, indent=2)
-    return dict(body=body)
-
-
-@application.route('/repos')
-@mako_view('code.mako')
-def repos():
-    repos = [repo.name for repo in gh.get_user().get_repos()]
-    body = json.dumps(repos, indent=2)
-    # repo.edit(has_wiki=False)
     return dict(body=body)
