@@ -1,36 +1,39 @@
 #!/usr/bin/env python
 import os
 import glob
-import base64
+import json
 import datetime
+import base64
 import hashlib
-from logger import logger
+import requests
+
 import github
-
-repo = dict(owner='chbrown', repo='divvy-history', branch='dates')
-
-# github_name = os.environ['GITHUB_NAME']
-# github_email = os.environ['GITHUB_EMAIL']
-# 'author.name': github_name,
-# 'author.email': github_email
+from logger import logger
+from settings import repo
 
 
-def put_file(data, path, sha=None):
-    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=path, **repo)
+def put_file(file_data, file_path, sha=None):
+    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
 
     # upload the file
-    data_base64 = base64.b64encode(data)
+    file_data_base64 = base64.b64encode(file_data)
 
     # PUT /repos/:owner/:repo/contents/:path
-    message = 'utc=' + datetime.datetime.utcnow().isoformat()
-    params = dict(message=message, content=data_base64, branch=repo['branch'])
+    now = datetime.datetime.utcnow()
+    message = 'utc={now} file={file_path}'.format(now=now.isoformat(), file_path=file_path)
+    params = dict(message=message, content=file_data_base64, branch=repo['branch'])
     if sha:
         # if the file already exists, we must update it by also providing the previous sha
         params['sha'] = sha
 
-    response = github.api(url, 'PUT', **params)
-    logger.debug('PUT response headers: %s', response.headers)
-    logger.debug('PUT response body: %s', response.text)
+    headers = dict(github.headers.items() + [('Content-type', 'application/json')])
+    data = json.dumps(params)
+    response = requests.put(github.root + url, headers=headers, data=data)
+    logger.debug('PUT %s: %d', url, response.status_code)
+    logger.debug('req headers: %s', github.inspect(response.request.headers))
+    logger.debug('req body: %s', response.request.body)
+    logger.debug('res headers: %s', github.inspect(response.headers))
+    logger.debug('res body: %s', response.text)
 
 
 def sync():
@@ -42,9 +45,10 @@ def sync():
             file_data = fp.read()
 
         url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
-        response = github.api(url, 'GET', ref=repo['branch'])
+        params = dict(ref=repo['branch'])
+        response = requests.get(github.root + url, headers=github.headers, params=params)
         result = response.json()
-        logger.debug('Getting file contents... status: %s', response.status_code)
+        logger.debug('GET %s: %d', url, response.status_code)
 
         shahash = hashlib.sha1('blob %d\0' % file_size)
         shahash.update(file_data)
@@ -52,9 +56,7 @@ def sync():
         remote_sha = result.get('sha')
 
         # upload if 1) the file doesn't already exist, or 2) the local sha is different
-        logger.debug('{file_path}: local={local_sha} remote={remote_sha}'.format(
-            file_path=file_path, local_sha=local_sha, remote_sha=remote_sha))
-        raise Exception('Stopping')
+        logger.debug('%s: local=%s remote=%s (ref=%s)', file_path, local_sha, remote_sha, repo['branch'])
         if remote_sha != local_sha:
             # r.status_code != 404
             put_file(file_data, file_path, remote_sha)

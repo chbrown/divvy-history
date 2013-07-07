@@ -1,19 +1,25 @@
 import os
+import glob
 import sys
 import json
+import datetime
 from apscheduler.scheduler import Scheduler
 from bottle import Bottle, mako_view
 
+# sys.path is a global for this python thread, so this enables local imports throughout the app
 sys.path.insert(0, '.')
 from fetch import fetch
 from sync import sync
+from logger import logger
 
 schedule = Scheduler()
 schedule.start()
 schedule.add_interval_job(fetch, minutes=1)
 # schedule.add_interval_job(sync, hours=6)
-schedule.add_interval_job(sync, minutes=15)
+schedule.add_interval_job(sync, minutes=5)
 
+now = datetime.datetime.utcnow()
+logger.debug('Scheduler initialized. %s', now.isoformat())
 
 application = Bottle()
 
@@ -29,7 +35,7 @@ def linecount(filepath):
 @application.route('/')
 @mako_view('index.mako')
 def index():
-    filenames = ['dates/' + filename for filename in os.listdir('dates')]
+    filenames = glob.glob('data/*')
     files = [dict(name=filename, lines=linecount(filename)) for filename in sorted(filenames)]
     return dict(files=files)
 
