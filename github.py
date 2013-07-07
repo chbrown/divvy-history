@@ -1,14 +1,23 @@
 #!/usr/bin/env python
 import os
+import json
 import requests
-import pprint
 
-repo = dict(owner='chbrown', repo='divvy-history', branch='dates')
+from settings import repo
+
+headers = dict(Authorization='token ' + os.environ['GITHUB_TOKEN'])
+root = 'https://api.github.com'
 
 
-def api(url, method='GET', **params):
-    headers = dict(Authorization='token ' + os.environ['GITHUB_TOKEN'])
-    return requests.request(method, 'https://api.github.com' + url, headers=headers, params=params)
+def _jsondefault(obj):
+    if isinstance(obj, requests.structures.CaseInsensitiveDict):
+        return dict(obj.items())
+    return obj
+
+
+def inspect(obj, indent=2, prefix='  '):
+    string = json.dumps(obj, indent=indent, default=_jsondefault, sort_keys=True)
+    return string.replace('\n', '\n' + prefix)
 
 
 def hashes():
@@ -20,10 +29,10 @@ def hashes():
             file_data = fp.read()
 
         url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
-        response = api(url, 'GET', ref=repo['branch'])
+        params = dict(ref=repo['branch'])
+        response = requests.get(root + url, headers=headers, params=params)
         result = response.json()
         print 'Getting file contents... status:', response.status_code
-        # pprint.pprint(result)
 
         shahash = hashlib.sha1('blob %d\0' % file_size)
         shahash.update(file_data)

@@ -13,13 +13,13 @@ CDT = pytz.timezone('America/Chicago')
 # stations-current.json -- the current stations
 
 # this file converts from old-format stations-epoch.json + patches.json to
-# new-style dates/YYYY-MM-DD.{json,patches} format
+# new-style data/YYYY-MM-DD.{json,patches} format
 
 
 def update(date, current_stations):
     print 'Updating to %s' % date
-    date_stations = os.path.join('dates', date + '.json')
-    date_patches = os.path.join('dates', date + '.patches')
+    date_stations = os.path.join('data', date + '.json')
+    date_patches = os.path.join('data', date + '.patches')
 
     if not os.path.exists(date_stations):
         with open(date_stations, 'w') as fp:
@@ -45,8 +45,8 @@ def update(date, current_stations):
 
 
 # in case we are *really* retrofitting:
-if not os.path.exists('dates'):
-    os.mkdir('dates')
+if not os.path.exists('data'):
+    os.mkdir('data')
 
 # load the very beginning stations (we don't care about stations-current.json)
 current_stations = json.load(open('stations-epoch.json'))
