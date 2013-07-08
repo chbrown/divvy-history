@@ -1,5 +1,5 @@
 {
-  "executionTime": "2013-07-08 12:58:01 AM", 
+  "executionTime": "2013-07-08 01:54:01 AM", 
   "stationBeanList": [
     {
       "availableDocks": 11, 
@@ -182,7 +182,7 @@
       "location": "1103 W.Jackson Blvd"
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 7, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -197,7 +197,7 @@
       "landMark": "160", 
       "latitude": 41.869482099999999, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 22, 
       "location": "1134 W. Taylor St"
     }, 
@@ -242,7 +242,7 @@
       "location": "240 E.Grand Ave."
     }, 
     {
-      "availableDocks": 20, 
+      "availableDocks": 18, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -257,7 +257,7 @@
       "landMark": "34", 
       "latitude": 41.897660000000002, 
       "statusKey": 1, 
-      "availableBikes": 3, 
+      "availableBikes": 5, 
       "id": 25, 
       "location": "150 E.Pearson st"
     }, 
@@ -542,7 +542,7 @@
       "location": ""
     }, 
     {
-      "availableDocks": 13, 
+      "availableDocks": 11, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -557,7 +557,7 @@
       "landMark": "40", 
       "latitude": 41.876065599, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 45, 
       "location": "420 w. Michigan"
     }, 
@@ -682,7 +682,7 @@
       "location": "120 W. Randolph St."
     }, 
     {
-      "availableDocks": 20, 
+      "availableDocks": 19, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -697,7 +697,7 @@
       "landMark": "43", 
       "latitude": 41.886058115099999, 
       "statusKey": 1, 
-      "availableBikes": 1, 
+      "availableBikes": 2, 
       "id": 52, 
       "location": "203 N. Michigan Ave."
     }, 
@@ -862,7 +862,7 @@
       "location": "1575 N. Dayton St."
     }, 
     {
-      "availableDocks": 10, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -877,7 +877,7 @@
       "landMark": "221", 
       "latitude": 41.907654999999998, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 61, 
       "location": "1416 N. Wood"
     }, 
@@ -1182,7 +1182,7 @@
       "location": "820 W. Grand Ave."
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 13, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -1197,7 +1197,7 @@
       "landMark": "42", 
       "latitude": 41.900960390000002, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 2, 
       "id": 85, 
       "location": "140 E. Oak St."
     }, 
@@ -1222,7 +1222,7 @@
       "location": "811 N. Noble St."
     }, 
     {
-      "availableDocks": 13, 
+      "availableDocks": 11, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -1237,7 +1237,7 @@
       "landMark": "189", 
       "latitude": 41.925562579999998, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 8, 
       "id": 87, 
       "location": "2411 N. Racine"
     }, 
