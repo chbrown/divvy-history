@@ -1,7 +1,6 @@
-import os
 import glob
 import sys
-import json
+import time
 import datetime
 from apscheduler.scheduler import Scheduler
 from bottle import Bottle, mako_view
@@ -40,33 +39,17 @@ def index():
     return dict(files=files)
 
 
-@application.route('/pwd')
-def pwd():
-    return os.getcwd()
+@application.route('/fetch')
+def get_fetch():
+    started = time.time()
+    fetch()
+    ended = time.time()
+    return 'Fetch done. Took %0.2f seconds.' % (ended - started)
 
 
-@application.route('/login')
-def login():
-    return os.getlogin()
-
-
-@application.route('/env')
-@mako_view('code.mako')
-def env():
-    body = json.dumps(dict(os.environ.items()), indent=2)
-    return dict(body=body)
-
-
-# @application.route('/config')
-# @mako_view('code.mako')
-# def config():
-#     body = open('gunicorn.config').read()
-#     return dict(body=body)
-
-
-@application.route('/dot')
-@mako_view('code.mako')
-def dot():
-    files = os.listdir('.')
-    body = json.dumps(files, indent=2)
-    return dict(body=body)
+@application.route('/sync')
+def get_sync():
+    started = time.time()
+    sync()
+    ended = time.time()
+    return 'Sync done. Took %0.2f seconds.' % (ended - started)
