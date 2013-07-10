@@ -1,8 +1,8 @@
 {
-  "executionTime": "2013-07-10 12:58:01 AM", 
+  "executionTime": "2013-07-10 06:58:01 AM", 
   "stationBeanList": [
     {
-      "availableDocks": 13, 
+      "availableDocks": 14, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -17,7 +17,7 @@
       "landMark": "30", 
       "latitude": 41.873958062900002, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 5, 
       "id": 5, 
       "location": "620 S. State St."
     }, 
@@ -102,7 +102,7 @@
       "location": "1611 N Marshfield Ave"
     }, 
     {
-      "availableDocks": 6, 
+      "availableDocks": 8, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -117,7 +117,7 @@
       "landMark": "246", 
       "latitude": 41.903320000000001, 
       "statusKey": 1, 
-      "availableBikes": 9, 
+      "availableBikes": 7, 
       "id": 17, 
       "location": "1802 W. Divison St"
     }, 
@@ -222,7 +222,7 @@
       "location": "350 W. Elm st"
     }, 
     {
-      "availableDocks": 11, 
+      "availableDocks": 7, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -237,12 +237,12 @@
       "landMark": "262", 
       "latitude": 41.891860000000001, 
       "statusKey": 1, 
-      "availableBikes": 3, 
+      "availableBikes": 6, 
       "id": 24, 
       "location": "240 E.Grand Ave."
     }, 
     {
-      "availableDocks": 18, 
+      "availableDocks": 16, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -257,12 +257,12 @@
       "landMark": "34", 
       "latitude": 41.897660000000002, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 7, 
       "id": 25, 
       "location": "150 E.Pearson st"
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 12, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -277,7 +277,7 @@
       "landMark": "51", 
       "latitude": 41.891019999999997, 
       "statusKey": 1, 
-      "availableBikes": 13, 
+      "availableBikes": 11, 
       "id": 26, 
       "location": ""
     }, 
@@ -302,7 +302,7 @@
       "location": "1530 N.Larrabee st"
     }, 
     {
-      "availableDocks": 5, 
+      "availableDocks": 6, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -317,7 +317,7 @@
       "landMark": "282", 
       "latitude": 41.914679999999997, 
       "statusKey": 1, 
-      "availableBikes": 10, 
+      "availableBikes": 9, 
       "id": 28, 
       "location": "590 W. Menomonee"
     }, 
@@ -342,7 +342,7 @@
       "location": "1016 N. Noble st"
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -357,7 +357,7 @@
       "landMark": "248", 
       "latitude": 41.899645790000001, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 6, 
       "id": 30, 
       "location": "1611 W. Augusta Blvd"
     }, 
@@ -462,7 +462,7 @@
       "location": "340 s. Franklin"
     }, 
     {
-      "availableDocks": 13, 
+      "availableDocks": 11, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -477,12 +477,12 @@
       "landMark": "20", 
       "latitude": 41.879356358700001, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 6, 
       "id": 37, 
       "location": "59 W. Adams St "
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 8, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -497,7 +497,7 @@
       "landMark": "170", 
       "latitude": 41.8532387578, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 42, 
       "location": "2119 S. Wabash Ave."
     }, 
@@ -562,7 +562,7 @@
       "location": "420 w. Michigan"
     }, 
     {
-      "availableDocks": 10, 
+      "availableDocks": 8, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -577,12 +577,12 @@
       "landMark": "46", 
       "latitude": 41.899930009999999, 
       "statusKey": 1, 
-      "availableBikes": 8, 
+      "availableBikes": 10, 
       "id": 46, 
       "location": "932 N. Wells St."
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 12, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -597,12 +597,12 @@
       "landMark": "50", 
       "latitude": 41.889180000000003, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 2, 
       "id": 47, 
       "location": "5 E. Kinzie St."
     }, 
     {
-      "availableDocks": 17, 
+      "availableDocks": 15, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -617,12 +617,12 @@
       "landMark": "12", 
       "latitude": 41.897735441899997, 
       "statusKey": 1, 
-      "availableBikes": 2, 
+      "availableBikes": 4, 
       "id": 48, 
       "location": "840 N. Larrabee St."
     }, 
     {
-      "availableDocks": 16, 
+      "availableDocks": 14, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -637,12 +637,12 @@
       "landMark": "49", 
       "latitude": 41.881319814999998, 
       "statusKey": 1, 
-      "availableBikes": 3, 
+      "availableBikes": 5, 
       "id": 49, 
       "location": "80 S. Dearborn St."
     }, 
     {
-      "availableDocks": 21, 
+      "availableDocks": 22, 
       "totalDocks": 27, 
       "city": "", 
       "altitude": "", 
@@ -657,7 +657,7 @@
       "landMark": "9", 
       "latitude": 41.875932665500002, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 3, 
       "id": 50, 
       "location": ""
     }, 
@@ -682,7 +682,7 @@
       "location": "120 W. Randolph St."
     }, 
     {
-      "availableDocks": 21, 
+      "availableDocks": 19, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -697,12 +697,12 @@
       "landMark": "43", 
       "latitude": 41.886058115099999, 
       "statusKey": 1, 
-      "availableBikes": 2, 
+      "availableBikes": 4, 
       "id": 52, 
       "location": "203 N. Michigan Ave."
     }, 
     {
-      "availableDocks": 12, 
+      "availableDocks": 13, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -717,12 +717,12 @@
       "landMark": "64", 
       "latitude": 41.8947375479, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 5, 
       "id": 53, 
       "location": "171 W. Huron"
     }, 
     {
-      "availableDocks": 13, 
+      "availableDocks": 14, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -737,12 +737,12 @@
       "landMark": "44", 
       "latitude": 41.896362457999999, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 4, 
       "id": 54, 
       "location": "1040 W. Chicago Ave."
     }, 
     {
-      "availableDocks": 12, 
+      "availableDocks": 10, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -757,7 +757,7 @@
       "landMark": "166", 
       "latitude": 41.866454741200002, 
       "statusKey": 1, 
-      "availableBikes": 3, 
+      "availableBikes": 5, 
       "id": 55, 
       "location": "791 W. James M. Rochford St."
     }, 
@@ -802,7 +802,7 @@
       "location": "559 W. Roosevelt Rd."
     }, 
     {
-      "availableDocks": 6, 
+      "availableDocks": 5, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -817,12 +817,12 @@
       "landMark": "25", 
       "latitude": 41.917858867699998, 
       "statusKey": 1, 
-      "availableBikes": 8, 
+      "availableBikes": 9, 
       "id": 58, 
       "location": "1639 W. Armitage Ave."
     }, 
     {
-      "availableDocks": 13, 
+      "availableDocks": 12, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -837,7 +837,7 @@
       "landMark": "31", 
       "latitude": 41.867172995200001, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 59, 
       "location": "1210 S. Wabash Ave."
     }, 
@@ -882,7 +882,7 @@
       "location": "1416 N. Wood"
     }, 
     {
-      "availableDocks": 7, 
+      "availableDocks": 8, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -897,12 +897,12 @@
       "landMark": "106", 
       "latitude": 41.851375172899999, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 6, 
       "id": 62, 
       "location": "2253 S. Dr. Martin Luther King Jr Dr."
     }, 
     {
-      "availableDocks": 14, 
+      "availableDocks": 17, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -917,7 +917,7 @@
       "landMark": "21", 
       "latitude": 41.885832741500003, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 2, 
       "id": 66, 
       "location": "202 N. Clinton St."
     }, 
@@ -942,7 +942,7 @@
       "location": "2410 N. Sheffield Ave."
     }, 
     {
-      "availableDocks": 22, 
+      "availableDocks": 23, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -957,12 +957,12 @@
       "landMark": "37", 
       "latitude": 41.875862682200001, 
       "statusKey": 1, 
-      "availableBikes": 1, 
+      "availableBikes": 0, 
       "id": 68, 
       "location": "520 W. Tilden"
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 13, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -977,7 +977,7 @@
       "landMark": "65", 
       "latitude": 41.909396006500003, 
       "statusKey": 1, 
-      "availableBikes": 9, 
+      "availableBikes": 6, 
       "id": 69, 
       "location": "2002 W. Pierce Ave."
     }, 
@@ -1002,7 +1002,7 @@
       "location": "1003 W. Lake St."
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 9, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -1017,7 +1017,7 @@
       "landMark": "148", 
       "latitude": 41.860121377399999, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 6, 
       "id": 72, 
       "location": "1 W. 16th St."
     }, 
@@ -1042,7 +1042,7 @@
       "location": "207 S. Jefferson St."
     }, 
     {
-      "availableDocks": 18, 
+      "availableDocks": 21, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -1057,12 +1057,12 @@
       "landMark": "265", 
       "latitude": 41.893843150000002, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 2, 
       "id": 74, 
       "location": "511 W Erie"
     }, 
     {
-      "availableDocks": 31, 
+      "availableDocks": 28, 
       "totalDocks": 35, 
       "city": "", 
       "altitude": "", 
@@ -1077,12 +1077,12 @@
       "landMark": "138", 
       "latitude": 41.87811421, 
       "statusKey": 1, 
-      "availableBikes": 4, 
+      "availableBikes": 7, 
       "id": 75, 
       "location": "510 W. Jackson Blvd."
     }, 
     {
-      "availableDocks": 8, 
+      "availableDocks": 6, 
       "totalDocks": 11, 
       "city": "", 
       "altitude": "", 
@@ -1097,12 +1097,12 @@
       "landMark": "300", 
       "latitude": 41.881050000000002, 
       "statusKey": 1, 
-      "availableBikes": 2, 
+      "availableBikes": 4, 
       "id": 76, 
       "location": "402 E. Monroe St."
     }, 
     {
-      "availableDocks": 18, 
+      "availableDocks": 15, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -1117,12 +1117,12 @@
       "landMark": "301", 
       "latitude": 41.881582399999999, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 8, 
       "id": 77, 
       "location": "8 S. Clinton St."
     }, 
     {
-      "availableDocks": 11, 
+      "availableDocks": 13, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -1137,12 +1137,12 @@
       "landMark": "156", 
       "latitude": 41.88158061, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 5, 
       "id": 80, 
       "location": "1059 W. Madison St."
     }, 
     {
-      "availableDocks": 18, 
+      "availableDocks": 17, 
       "totalDocks": 23, 
       "city": "", 
       "altitude": "", 
@@ -1157,7 +1157,7 @@
       "landMark": "23", 
       "latitude": 41.8833135, 
       "statusKey": 1, 
-      "availableBikes": 5, 
+      "availableBikes": 6, 
       "id": 81, 
       "location": "48 W. Washington St."
     }, 
@@ -1182,7 +1182,7 @@
       "location": "820 W. Grand Ave."
     }, 
     {
-      "availableDocks": 9, 
+      "availableDocks": 10, 
       "totalDocks": 15, 
       "city": "", 
       "altitude": "", 
@@ -1197,7 +1197,7 @@
       "landMark": "42", 
       "latitude": 41.900960390000002, 
       "statusKey": 1, 
-      "availableBikes": 6, 
+      "availableBikes": 5, 
       "id": 85, 
       "location": "140 E. Oak St."
     }, 
@@ -1282,7 +1282,7 @@
       "location": "33 S. Michigan Ave."
     }, 
     {
-      "availableDocks": 24, 
+      "availableDocks": 25, 
       "totalDocks": 31, 
       "city": "", 
       "altitude": "", 
@@ -1297,12 +1297,12 @@
       "landMark": "10", 
       "latitude": 41.883380000000002, 
       "statusKey": 1, 
-      "availableBikes": 7, 
+      "availableBikes": 4, 
       "id": 91, 
       "location": "109 N. Clinton St."
     }, 
     {
-      "availableDocks": 11, 
+      "availableDocks": 12, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -1317,7 +1317,7 @@
       "landMark": "196", 
       "latitude": 41.89445911, 
       "statusKey": 1, 
-      "availableBikes": 8, 
+      "availableBikes": 7, 
       "id": 92, 
       "location": ""
     }, 
@@ -1342,7 +1342,7 @@
       "location": "1740 N. Sheffield Ave."
     }, 
     {
-      "availableDocks": 10, 
+      "availableDocks": 11, 
       "totalDocks": 19, 
       "city": "", 
       "altitude": "", 
@@ -1357,7 +1357,7 @@
       "landMark": "146", 
       "latitude": 41.918070620000002, 
       "statusKey": 1, 
-      "availableBikes": 8, 
+      "availableBikes": 7, 
       "id": 94, 
       "location": "1963 N. Lincoln Ave."
     }, 
