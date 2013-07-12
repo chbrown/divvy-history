@@ -1,4 +1,4 @@
-import glob
+import os
 import sys
 import time
 import datetime
@@ -8,6 +8,7 @@ from bottle import Bottle, mako_view
 # sys.path is a global for this python thread, so this enables local imports throughout the app
 sys.path.insert(0, '.')
 from fetch import fetch
+from settings import datadir
 from sync import sync
 from logger import logger
 
@@ -18,7 +19,7 @@ schedule.add_interval_job(sync, hours=6)
 # schedule.add_interval_job(sync, minutes=5)
 
 now = datetime.datetime.utcnow()
-logger.debug('Scheduler initialized. %s', now.isoformat())
+logger.debug('Scheduler initialized. UTC=%s', now.isoformat())
 
 application = Bottle()
 
@@ -34,8 +35,9 @@ def linecount(filepath):
 @application.route('/')
 @mako_view('index.mako')
 def index():
-    filenames = glob.glob('data/*')
-    files = [dict(name=filename, lines=linecount(filename)) for filename in sorted(filenames)]
+    filenames = sorted(os.listdir(datadir))
+    filepaths = [os.path.join(datadir, filename) for filename in filenames]
+    files = [dict(name=filepath, lines=linecount(filepath)) for filepath in sorted(filepaths)]
     return dict(files=files)
 
 

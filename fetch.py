@@ -14,6 +14,9 @@ from logger import logger
 from settings import datadir
 
 
+# this script should be called at least once a minute
+
+
 def fetch():
     utc_date = datetime.datetime.utcnow()
     logger.debug('Fetching started: %s', utc_date.isoformat())

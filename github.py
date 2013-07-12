@@ -3,7 +3,7 @@ import os
 import json
 import requests
 
-from settings import repo
+from settings import repo, datadir
 
 headers = dict(Authorization='token ' + os.environ['GITHUB_TOKEN'])
 root = 'https://api.github.com'
@@ -41,6 +41,17 @@ def hashes():
         print file_path, local_sha, remote_sha
 
 
+def listfiles():
+    # import pprint
+    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=datadir, **repo)
+    params = dict(ref=repo['branch'])
+    response = requests.get(root + url, headers=headers, params=params)
+    result = response.json()
+    print 'Getting directory:', datadir
+    print 'Response status code:', response.status_code
+    print inspect(result)
+
+
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='GitHub API explorer')
@@ -50,6 +61,10 @@ def main():
 
     if opts.action == 'hashes':
         hashes()
+    elif opts.action == 'listfiles':
+        listfiles()
+    else:
+        print 'Action not implemented:', opts.action
 
 if __name__ == '__main__':
     main()

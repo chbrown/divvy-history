@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import os
-import glob
 import json
 import datetime
 import base64
@@ -9,7 +8,39 @@ import requests
 
 import github
 from logger import logger
-from settings import repo
+from settings import repo, datadir
+
+
+# this script should be called every six hours or so
+
+def get_file(file_path):
+    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
+    params = dict(ref=repo['branch'])
+    response = requests.get(github.root + url, headers=github.headers, params=params)
+    result = response.json()
+
+    dir_path = os.path.dirname(file_path)
+    if not os.path.exists(dir_path):
+        logger.info('Created directory: %s', dir_path)
+        os.mkdir(dir_path)
+
+    file_data = base64.b64decode(result['content'])
+    with open(file_path, 'w') as fp:
+        fp.write(file_data)
+
+    logger.info('Retrieved file: %s (%d bytes)', file_path, len(file_data))
+
+
+def get_dir(dir_path):
+    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=dir_path, **repo)
+    params = dict(ref=repo['branch'])
+    # just assume children are all plain files (no directories, no symlinks, no submodules)
+    response = requests.get(github.root + url, headers=github.headers, params=params)
+    result = response.json()
+    for child in result:
+        get_file(child['path'])
+
+    logger.info('Retrieved %d files from directory: %s', len(result), dir_path)
 
 
 def put_file(file_data, file_path, sha=None):
@@ -40,7 +71,8 @@ def put_file(file_data, file_path, sha=None):
 def sync():
     now = datetime.datetime.utcnow()
     logger.debug('Syncing started: %s', now.isoformat())
-    for file_path in glob.glob('data/*'):
+    for file_name in os.listdir(datadir):
+        file_path = os.path.join(datadir, file_name)
         file_size = os.path.getsize(file_path)
         with open(file_path) as fp:
             file_data = fp.read()
