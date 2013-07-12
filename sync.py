@@ -36,6 +36,7 @@ def get_dir(dir_path):
     params = dict(ref=repo['branch'])
     # just assume children are all plain files (no directories, no symlinks, no submodules)
     response = requests.get(github.root + url, headers=github.headers, params=params)
+    logger.info('get_dir response: %s', response.text)
     result = response.json()
     for child in result:
         get_file(child['path'])

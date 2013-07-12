@@ -13,6 +13,8 @@ from patching import persist_new_state
 from logger import logger
 from settings import datadir
 
+logger.setLevel(logging.info)
+
 CDT = pytz.timezone('America/Chicago')
 
 # this file converts from old-format stations-epoch.json + patches.json to
