@@ -9,19 +9,23 @@ from bottle import Bottle, mako_view
 sys.path.insert(0, '.')
 from fetch import fetch
 from settings import datadir
-from sync import sync
+from sync import sync, get_dir
 from logger import logger
+
+
+logger.debug('Initializing with datadir from github.')
+get_dir(datadir)
 
 schedule = Scheduler()
 schedule.start()
 schedule.add_interval_job(fetch, minutes=1)
 schedule.add_interval_job(sync, hours=6)
-# schedule.add_interval_job(sync, minutes=5)
 
-now = datetime.datetime.utcnow()
-logger.debug('Scheduler initialized. UTC=%s', now.isoformat())
+utc_now = datetime.datetime.utcnow()
+logger.debug('Scheduler initialized. UTC=%s', utc_now.isoformat())
 
 application = Bottle()
+application_started = time.time()
 
 
 def linecount(filepath):
@@ -46,7 +50,7 @@ def get_fetch():
     started = time.time()
     fetch()
     ended = time.time()
-    return 'Fetch done. Took %0.2f seconds.' % (ended - started)
+    return 'Fetch done. Took %0.3f seconds.' % (ended - started)
 
 
 @application.route('/sync')
@@ -54,4 +58,9 @@ def get_sync():
     started = time.time()
     sync()
     ended = time.time()
-    return 'Sync done. Took %0.2f seconds.' % (ended - started)
+    return 'Sync done. Took %0.3f seconds.' % (ended - started)
+
+
+@application.route('/uptime')
+def get_uptime():
+    return 'Uptime: %0.3f seconds.' % (time.time() - application_started)
