@@ -4,3 +4,4 @@ accesslog = '-'
 errorlog = '-'
 loglevel = 'debug'  # e.g.: debug info warning error critical
 repo = dict(owner='chbrown', repo='divvy-history', branch='dates')
+datadir = 'data'
