@@ -45,7 +45,7 @@ logger.info('Retrofitting %d patchsets', total_patches)
 def flush(date_string):
     epoch_path = os.path.join(datadir, date_string + '.json')
     patches_path = os.path.join(datadir, date_string + '.patches')
-    persist_new_state(epoch_path, patches_path, current_state, logger=logger, cache=CACHE)
+    persist_new_state(epoch_path, patches_path, current_state, logger=logger, persisted_state_cache=CACHE)
 
 # apply the patches incrementally
 for patch_i, patch_string in enumerate(open('patches.json')):
@@ -53,17 +53,17 @@ for patch_i, patch_string in enumerate(open('patches.json')):
     naive_date = datetime.strptime(current_state['executionTime'], '%Y-%m-%d %I:%M:%S %p')
     utc_date = CDT.localize(naive_date).astimezone(pytz.utc)
 
-    logger.warn('Line #%5d/%5d, UTC: %s', patch_i, total_patches, utc_date.isoformat())
+    logger.warn('Line %5d/%5d, UTC: %s', patch_i, total_patches, utc_date.isoformat())
 
     date_string = utc_date.strftime('%Y-%m-%d')
     flush(date_string)
 
     patch = JsonPatch.from_string(patch_string)
-    patch.apply(current_state, in_place=True)
+    # cannot patch in place because the cached state would be changed
+    current_state = patch.apply(current_state)
 else:
     flush(date_string)
 
-logger.error('Completely retrofitted. Removing retro files.')
-for filename in ['stations-current.json', 'stations-epoch.json', 'patches.json']:
-    logger.error('rm %s', filename)
-    os.remove(filename)
+logger.error('\nCompletely retrofitted. You can now remove the old-style data:\n')
+oldstyle_filenames = ['stations-current.json', 'stations-epoch.json', 'patches.json']
+print 'git rm ' + ' '.join(oldstyle_filenames)
