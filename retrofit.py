@@ -1,72 +1,69 @@
 #!/usr/bin/env python
+import sys
 import os
 import json
 from datetime import datetime
 from jsonpatch import JsonPatch
 import pytz
 
+# relative imports
+if '.' not in sys.path:
+    sys.path.insert(0, '.')
+from patching import persist_new_state
+from logger import logger
+from settings import datadir
+
 CDT = pytz.timezone('America/Chicago')
 
-# old-style files:
-# stations-epoch.json -- some beginning point to enact patches on top of
-# patches.json -- list of json-patches changes to get from epoch to current
-# stations-current.json -- the current stations
-
 # this file converts from old-format stations-epoch.json + patches.json to
-# new-style data/YYYY-MM-DD.{json,patches} format
 
+# before (old-style):
+#   stations-epoch.json -- some beginning point to enact patches on top of
+#   patches.json -- list of json-patches changes to get from epoch to current
+#   stations-current.json -- the current stations
 
-def update(date, current_stations):
-    print 'Updating to %s' % date
-    date_stations = os.path.join('data', date + '.json')
-    date_patches = os.path.join('data', date + '.patches')
+# after (new-style):
+#   data/YYYY-MM-DD.{json,patches} -- for each day that's been covered, about 1440 patches per day
 
-    if not os.path.exists(date_stations):
-        with open(date_stations, 'w') as fp:
-            json.dump(current_stations, fp)
-        print 'Created file %s with %d-long stationBeanList' % (
-            date_stations, len(current_stations['stationBeanList']))
-    else:
-        # load beginning-of-day patches
-        old_stations = json.load(open(date_stations))
-        with open(date_patches, 'a+') as fp:
-            # apply patches, one by one
-            for line in open(date_patches, 'r'):
-                patch = JsonPatch.from_string(line)
-                patch.apply(old_stations, in_place=True)
-
-            # get the bleeding edge (changes in the last minute)
-            json_patch = JsonPatch.from_diff(old_stations, current_stations)
-
-            print 'Writing %d patches to %s' % (len(json_patch.patch), date_patches)
-            if len(json_patch.patch) > 0:
-                json.dump(json_patch.patch, fp)
-                fp.write('\n')
-
-
-# in case we are *really* retrofitting:
-if not os.path.exists('data'):
-    os.mkdir('data')
+if not os.path.exists(datadir):
+    os.mkdir(datadir)
+    logger.warn('Created directory: %s', datadir)
+else:
+    logger.info('Directory already exists: %s', datadir)
 
 # load the very beginning stations (we don't care about stations-current.json)
-current_stations = json.load(open('stations-epoch.json'))
+current_state = json.load(open('stations-epoch.json'))
+CACHE = dict()
+
+# do a simple line count on the old-style patches file
+for total_patches, _ in enumerate(open('patches.json')):
+    pass
+
+logger.info('Retrofitting %d patchsets', total_patches)
+
+
+def flush(date_string):
+    epoch_path = os.path.join(datadir, date_string + '.json')
+    patches_path = os.path.join(datadir, date_string + '.patches')
+    persist_new_state(epoch_path, patches_path, current_state, logger=logger, cache=CACHE)
 
 # apply the patches incrementally
-for line_i, patch_string in enumerate(open('patches.json', 'r')):
-    naive_date = datetime.strptime(current_stations['executionTime'], '%Y-%m-%d %I:%M:%S %p')
+for patch_i, patch_string in enumerate(open('patches.json')):
+    # this datetime conversion determines how we split up files (by UTC date, but not time)
+    naive_date = datetime.strptime(current_state['executionTime'], '%Y-%m-%d %I:%M:%S %p')
     utc_date = CDT.localize(naive_date).astimezone(pytz.utc)
-    print 'Line #%4d, UTC: %s' % (line_i, utc_date.isoformat())
-    date = utc_date.strftime('%Y-%m-%d')
 
-    update(date, current_stations)
+    logger.warn('Line #%5d/%5d, UTC: %s', patch_i, total_patches, utc_date.isoformat())
 
-    # finally, apply patch
+    date_string = utc_date.strftime('%Y-%m-%d')
+    flush(date_string)
+
     patch = JsonPatch.from_string(patch_string)
-    patch.apply(current_stations, in_place=True)
+    patch.apply(current_state, in_place=True)
+else:
+    flush(date_string)
 
-update(date, current_stations)
-
-print 'Completely retrofitted. Removing retro files:'
+logger.error('Completely retrofitted. Removing retro files.')
 for filename in ['stations-current.json', 'stations-epoch.json', 'patches.json']:
-    print 'rm', filename
+    logger.error('rm %s', filename)
     os.remove(filename)
