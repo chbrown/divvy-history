@@ -1,0 +1,14 @@
+---
+applications:
+  .:
+    name: divvy3
+    framework:
+      name: wsgi
+      info:
+        mem: 64M
+        description: "Python WSGI (Bottle) + git-branch appfog3"
+        exec:
+    infra: aws
+    url: ${name}.${target-base}
+    mem: 64M
+    instances: 1
