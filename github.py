@@ -3,9 +3,9 @@ import os
 import json
 import requests
 
-from settings import repo, datadir
+from settings import repo, datadir, github_token
 
-headers = dict(Authorization='token ' + os.environ['GITHUB_TOKEN'])
+headers = dict(Authorization='token ' + github_token)
 root = 'https://api.github.com'
 
 

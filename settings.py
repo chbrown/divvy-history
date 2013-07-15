@@ -1,7 +1,11 @@
+import os
+
 bind = '0.0.0.0:5080'
-# debug = True
 accesslog = '-'
 errorlog = '-'
 loglevel = 'debug'  # e.g.: debug info warning error critical
-repo = dict(owner='chbrown', repo='divvy-history', branch='dates')
+
 datadir = 'data'
+github_token = os.environ.get('GITHUB_TOKEN', '')
+git_branch = os.environ.get('GIT_BRANCH', 'master')
+repo = dict(owner='chbrown', repo='divvy-history', branch=git_branch)
