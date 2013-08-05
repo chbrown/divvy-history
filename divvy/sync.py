@@ -7,14 +7,16 @@ import hashlib
 import logging
 import requests
 
-from divvy import github, repo, datadir
+from divvy import inspect
 logger = logging.getLogger(__name__)
 
+github_root = 'https://api.github.com'
 
-def get_file(file_path):
+
+def get_file(file_path, repo, headers):
     url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
     params = dict(ref=repo['branch'])
-    response = requests.get(github.root + url, headers=github.headers, params=params)
+    response = requests.get(github_root + url, headers=headers, params=params)
     result = response.json()
 
     dir_path = os.path.dirname(file_path)
@@ -29,20 +31,20 @@ def get_file(file_path):
     logger.info('Retrieved file: %s (%d bytes)', file_path, len(file_data))
 
 
-def get_dir(dir_path):
+def get_dir(dir_path, repo, headers):
     url = '/repos/{owner}/{repo}/contents/{path}'.format(path=dir_path, **repo)
     params = dict(ref=repo['branch'])
     # just assume children are all plain files (no directories, no symlinks, no submodules)
-    response = requests.get(github.root + url, headers=github.headers, params=params)
+    response = requests.get(github_root + url, headers=headers, params=params)
     logger.info('get_dir response: %s', response.text)
     result = response.json()
     for child in result:
-        get_file(child['path'])
+        get_file(child['path'], repo, headers)
 
     logger.info('Retrieved %d files from directory: %s', len(result), dir_path)
 
 
-def put_file(file_data, file_path, sha=None):
+def put_file(repo, headers, file_data, file_path, sha=None):
     url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
 
     # upload the file
@@ -56,18 +58,18 @@ def put_file(file_data, file_path, sha=None):
         # if the file already exists, we must update it by also providing the previous sha
         params['sha'] = sha
 
-    headers = dict(github.headers.items() + [('Content-type', 'application/json')])
+    headers = dict(headers.items() + [('Content-type', 'application/json')])
     data = json.dumps(params)
-    response = requests.put(github.root + url, headers=headers, data=data)
+    response = requests.put(github_root + url, headers=headers, data=data)
     result = response.json()
     logger.debug('PUT %s: %d', url, response.status_code)
-    logger.debug('req headers: %s', github.inspect(response.request.headers))
+    logger.debug('req headers: %s', inspect(response.request.headers))
     # logger.debug('req body: %s', response.request.body)
-    logger.debug('res headers: %s', github.inspect(response.headers))
-    logger.debug('res body: %s', github.inspect(result))
+    logger.debug('res headers: %s', inspect(response.headers))
+    logger.debug('res body: %s', inspect(result))
 
 
-def sync():
+def sync(datadir, repo, headers):
     now = datetime.datetime.utcnow()
     logger.debug('Syncing started: %s', now.isoformat())
     for file_name in os.listdir(datadir):
@@ -78,7 +80,7 @@ def sync():
 
         url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
         params = dict(ref=repo['branch'])
-        response = requests.get(github.root + url, headers=github.headers, params=params)
+        response = requests.get(github_root + url, headers=headers, params=params)
         result = response.json()
         logger.debug('GET %s: %d', url, response.status_code)
 
@@ -91,19 +93,7 @@ def sync():
         logger.debug('%s: local=%s remote=%s (ref=%s)', file_path, local_sha, remote_sha, repo['branch'])
         if remote_sha != local_sha:
             # r.status_code != 404
-            put_file(file_data, file_path, remote_sha)
+            put_file(repo, headers, file_data, file_path, remote_sha)
 
         # if r.headers.status.
         # git commit -a -m "epoch=`date +%s`"
-
-
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description='divvy-sync')
-    parser.add_argument('-v', '--verbose', action='store_true')
-    opts = parser.parse_args()
-
-    if opts.verbose:
-        logger.setLevel(logging.DEBUG)
-
-    sync()

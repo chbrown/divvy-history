@@ -1,11 +1,16 @@
-import os
-import logging
-
-logging.basicConfig(level=logging.INFO)
+import os.path
+import json
+import requests
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-datadir = os.path.join(root, 'data')
 
-github_token = os.environ.get('GITHUB_TOKEN', '')
-git_branch = os.environ.get('GIT_BRANCH', 'master')
-repo = dict(owner='chbrown', repo='divvy-history', branch=git_branch)
+
+def _jsondefault(obj):
+    if isinstance(obj, requests.structures.CaseInsensitiveDict):
+        return dict(obj.items())
+    return obj
+
+
+def inspect(obj, indent=2, prefix='  '):
+    string = json.dumps(obj, indent=indent, default=_jsondefault, sort_keys=True)
+    return string.replace('\n', '\n' + prefix)

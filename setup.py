@@ -10,8 +10,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'divvy-fetch = divvy.fetch:main',
-            'divvy-sync = divvy.sync:main',
+            'divvy = divvy.cli:main',
         ],
     },
 )
