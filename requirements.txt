@@ -1,5 +1,0 @@
-apscheduler
-bottle
-jsonpatch
-requests
-mako
