@@ -110,5 +110,5 @@ def git_commit_push(datadir):
     message = 'utc={now}'.format(now=now.isoformat())
     datadir_files = os.path.join(datadir, '*')
     run(['git', 'add', datadir_files])
-    run(['git', '-m', message])
+    run(['git', 'commit', '-m', message])
     run(['git', 'push'])
