@@ -44,15 +44,15 @@ def get_dir(dir_path, repo, headers):
     logger.info('Retrieved %d files from directory: %s', len(result), dir_path)
 
 
-def put_file(repo, headers, file_data, file_path, sha=None):
-    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
+def put_file(repo, headers, file_data, repo_path, sha=None):
+    url = '/repos/{owner}/{repo}/contents/{path}'.format(path=repo_path, **repo)
 
     # upload the file
     file_data_base64 = base64.b64encode(file_data)
 
     # PUT /repos/:owner/:repo/contents/:path
     now = datetime.datetime.utcnow()
-    message = 'utc={now} file={file_path}'.format(now=now.isoformat(), file_path=file_path)
+    message = 'utc={now} file={file}'.format(now=now.isoformat(), file=repo_path)
     params = dict(message=message, content=file_data_base64, branch=repo['branch'])
     if sha:
         # if the file already exists, we must update it by also providing the previous sha
@@ -74,11 +74,12 @@ def sync(datadir, repo, headers):
     logger.debug('Syncing started: %s', now.isoformat())
     for file_name in os.listdir(datadir):
         file_path = os.path.join(datadir, file_name)
+        repo_path = os.path.join(os.path.basename(datadir), file_name)
         file_size = os.path.getsize(file_path)
         with open(file_path) as fp:
             file_data = fp.read()
 
-        url = '/repos/{owner}/{repo}/contents/{path}'.format(path=file_path, **repo)
+        url = '/repos/{owner}/{repo}/contents/{path}'.format(path=repo_path, **repo)
         params = dict(ref=repo['branch'])
         response = requests.get(github_root + url, headers=headers, params=params)
         result = response.json()
