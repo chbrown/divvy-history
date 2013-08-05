@@ -6,8 +6,9 @@ import base64
 import hashlib
 import logging
 import requests
+import subprocess
 
-from divvy import inspect
+from divvy import inspect, root
 logger = logging.getLogger(__name__)
 
 github_root = 'https://api.github.com'
@@ -64,7 +65,6 @@ def put_file(repo, headers, file_data, repo_path, sha=None):
     result = response.json()
     logger.debug('PUT %s: %d', url, response.status_code)
     logger.debug('req headers: %s', inspect(response.request.headers))
-    # logger.debug('req body: %s', response.request.body)
     logger.debug('res headers: %s', inspect(response.headers))
     logger.debug('res body: %s', inspect(result))
 
@@ -94,7 +94,21 @@ def sync(datadir, repo, headers):
         logger.debug('%s: local=%s remote=%s (ref=%s)', file_path, local_sha, remote_sha, repo['branch'])
         if remote_sha != local_sha:
             # r.status_code != 404
-            put_file(repo, headers, file_data, file_path, remote_sha)
+            put_file(repo, headers, file_data, repo_path, remote_sha)
 
         # if r.headers.status.
         # git commit -a -m "epoch=`date +%s`"
+
+
+def run(args):
+    logger.info('$ ' + ' '.join(args))
+    return subprocess.call(args, cwd=root)
+
+
+def git_commit_push(datadir):
+    now = datetime.datetime.utcnow()
+    message = 'utc={now}'.format(now=now.isoformat())
+    datadir_files = os.path.join(datadir, '*')
+    run(['git', 'add', datadir_files])
+    run(['git', '-m', message])
+    run(['git', 'push'])

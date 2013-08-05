@@ -7,7 +7,7 @@ from divvy import root, sync, fetch
 
 def main():
     parser = argparse.ArgumentParser(description='Divvy CLI')
-    parser.add_argument('command', choices=['fetch', 'sync'])
+    parser.add_argument('command', choices=['fetch', 'sync', 'push'])
     parser.add_argument('--datadir', default=os.path.join(root, 'data'))
     parser.add_argument('--token', default=os.environ.get('GITHUB_TOKEN', ''))
     parser.add_argument('--branch', default=os.environ.get('GIT_BRANCH', 'master'))
@@ -25,5 +25,7 @@ def main():
         fetch.fetch(opts.datadir)
     elif opts.command == 'sync':
         sync.sync(opts.datadir, repo, headers)
+    elif opts.command == 'push':
+        sync.git_commit_push(opts.datadir)
     else:
         print 'Invalid command'
