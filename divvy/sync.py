@@ -95,3 +95,15 @@ def sync():
 
         # if r.headers.status.
         # git commit -a -m "epoch=`date +%s`"
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description='divvy-sync')
+    parser.add_argument('-v', '--verbose', action='store_true')
+    opts = parser.parse_args()
+
+    if opts.verbose:
+        logger.setLevel(logging.DEBUG)
+
+    sync()

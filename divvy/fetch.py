@@ -43,3 +43,15 @@ def fetch():
         patching.persist_new_state(epoch_path, patches_path, current_state, logger=logger)
         ended = time.time()
         logger.info('Finished persisting new state in %0.2f seconds.', ended - started)
+
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser(description='divvy-fetch')
+    parser.add_argument('-v', '--verbose', action='store_true')
+    opts = parser.parse_args()
+
+    if opts.verbose:
+        logger.setLevel(logging.DEBUG)
+
+    fetch()
