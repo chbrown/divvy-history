@@ -9,10 +9,10 @@
 ## Scraping
 
     *  *  * * * /usr/local/bin/divvy fetch
-    0 */6 * * * /usr/local/bin/divvy sync
+    0 */6 * * * /usr/local/bin/divvy push
 
 - `divvy fetch` runs every minute.
-- `divvy sync` runs every six hours. It could easily run much more often, but I didn't want to flood my GitHub record with 1,440 commits every day.
+- `divvy push` runs every six hours. It could easily run much more often, but I didn't want to flood my GitHub record with 1,440 commits every day.
 
 ## Patches
 
