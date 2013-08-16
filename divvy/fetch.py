@@ -82,6 +82,7 @@ def fetch(datadir):
 
     if not os.path.exists(epoch_path):
         filepath, http_message = urllib.urlretrieve(url)
+        logger.debug('Moving tmp file from %s to %s', filepath, epoch_path)
         os.rename(filepath, epoch_path)
         logger.debug('Downloaded original directly to file: %s', epoch_path)
     else:
