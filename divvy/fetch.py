@@ -3,6 +3,7 @@ import os
 import json
 import time
 import urllib
+import shutil
 import logging
 import datetime
 from jsonpatch import JsonPatch
@@ -16,14 +17,15 @@ def merge_epoch_and_patches(epoch_path, patches_path):
         obj = json.load(epoch_fp)
 
     # apply patches, one by one
-    patch_index = 0
+    patches_applied = 0
     if os.path.exists(patches_path):
         with open(patches_path) as patches_fp:
-            for patch_index, patch_line in enumerate(patches_fp):
+            for patch_line in patches_fp:
                 patch = JsonPatch.from_string(patch_line)
                 patch.apply(obj, in_place=True)
+                patches_applied += 1
 
-    logger.info('Read %d patches from %s and applied them to %s', patch_index, patches_path, epoch_path)
+    logger.info('Read %d patchsets from %s and applied them to %s', patches_applied, patches_path, epoch_path)
 
     return obj
 
@@ -83,7 +85,7 @@ def fetch(datadir):
     if not os.path.exists(epoch_path):
         filepath, http_message = urllib.urlretrieve(url)
         logger.debug('Moving tmp file from %s to %s', filepath, epoch_path)
-        os.rename(filepath, epoch_path)
+        shutil.move(filepath, epoch_path)
         logger.debug('Downloaded original directly to file: %s', epoch_path)
     else:
         # get the bleeding edge (changes in the last minute)
