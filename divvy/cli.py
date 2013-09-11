@@ -6,7 +6,8 @@ from divvy import root, sync, fetch, scheduling
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Divvy CLI')
+    parser = argparse.ArgumentParser(description='Divvy CLI',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('command', choices=['fetch', 'sync', 'push', 'poll'])
     parser.add_argument('--datadir', default=os.path.join(root, 'data'))
     parser.add_argument('--token', default=os.environ.get('GITHUB_TOKEN', ''))
