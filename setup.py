@@ -5,6 +5,7 @@ setup(
     version='0.0.4',
     packages=['divvy'],
     install_requires=[
+        'apscheduler',
         'jsonpatch',
         'requests',
     ],

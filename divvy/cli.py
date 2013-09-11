@@ -2,7 +2,7 @@ import os
 import logging
 import argparse
 
-from divvy import root, sync, fetch
+from divvy import root, sync, fetch, scheduling
 
 
 def main():
@@ -27,5 +27,7 @@ def main():
         sync.sync(opts.datadir, repo, headers)
     elif opts.command == 'push':
         sync.git_commit_push(opts.datadir)
+    elif opts.command == 'poll':
+        scheduling.poll(opts.datadir)
     else:
         print 'Invalid command'
