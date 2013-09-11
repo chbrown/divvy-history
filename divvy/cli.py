@@ -9,10 +9,14 @@ def main():
     parser = argparse.ArgumentParser(description='Divvy CLI',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('command', choices=['fetch', 'sync', 'push', 'poll'])
-    parser.add_argument('--datadir', default=os.path.join(root, 'data'))
-    parser.add_argument('--token', default=os.environ.get('GITHUB_TOKEN', ''))
-    parser.add_argument('--branch', default=os.environ.get('GIT_BRANCH', 'master'))
-    parser.add_argument('-v', '--verbose', action='store_true')
+    parser.add_argument('--datadir', default=os.path.join(root, 'data'),
+        help='Directory to save datestamped files')
+    parser.add_argument('--token', default=os.environ.get('GITHUB_TOKEN', ''),
+        help='Github API token')
+    parser.add_argument('--branch', default=os.environ.get('GIT_BRANCH', 'master'),
+        help='Git repository branch to use')
+    parser.add_argument('-v', '--verbose', action='store_true',
+        help='Print extra output')
     opts = parser.parse_args()
 
     level = logging.DEBUG if opts.verbose else logging.INFO
