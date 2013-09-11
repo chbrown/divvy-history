@@ -4,8 +4,7 @@ from divvy import sync, fetch
 
 
 def poll(datadir):
-    scheduler = Scheduler()
-    scheduler.start()
+    scheduler = Scheduler(standalone=True)
 
     @scheduler.interval_schedule(minutes=1)
     def fetch_job():
@@ -16,3 +15,5 @@ def poll(datadir):
     def push_job():
         sync.git_commit_push(datadir)
         scheduler.print_jobs()
+
+    scheduler.start()
