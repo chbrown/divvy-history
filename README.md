@@ -6,6 +6,7 @@
     cd divvy-history
     python setup.py install
 
+
 ## Scraping
 
     *  *  * * * /usr/local/bin/divvy fetch
@@ -14,9 +15,18 @@
 - `divvy fetch` runs every minute.
 - `divvy push` runs every six hours. It could easily run much more often, but I didn't want to flood my GitHub record with 1,440 commits every day.
 
+
 ## Patches
 
 Patching follows [RFC 6902](http://tools.ietf.org/html/rfc6902) for describing JSON patches with JSON.
+
+
+## OS-specific installation
+
+On built-in Python in Arch Linux you might want to use the following instead:
+
+    python2 setup.py develop --script-dir=/usr/local/bin
+
 
 ## License
 
