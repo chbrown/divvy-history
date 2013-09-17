@@ -3,7 +3,6 @@ import os
 import json
 import time
 import urllib
-import shutil
 import logging
 import datetime
 from jsonpatch import JsonPatch
@@ -53,7 +52,7 @@ def persist_new_state(epoch_path, patches_path, new_state, persisted_state_cache
         diff = JsonPatch.from_diff(persisted_state, new_state)
         if len(diff.patch) > 0:
             with open(patches_path, 'a') as patches_fp:
-                logger.warn('Writing %d patches to %s', len(diff.patch), patches_path)
+                logger.warn('Writing %d-patch patchset to %s', len(diff.patch), patches_path)
                 json.dump(diff.patch, patches_fp)
                 patches_fp.write(os.linesep)
         else:
@@ -83,18 +82,24 @@ def fetch(datadir):
     # 4. write the patch for the current state
 
     if not os.path.exists(epoch_path):
-        filepath, http_message = urllib.urlretrieve(url)
-        logger.debug('Moving tmp file from %s to %s', filepath, epoch_path)
-        shutil.move(filepath, epoch_path)
-        logger.debug('Downloaded original directly to file: %s', epoch_path)
+        logger.debug('Downloading epoch json directly to file: %s', epoch_path)
+        filepath, http_message = urllib.urlretrieve(url, epoch_path)
     else:
-        # get the bleeding edge (changes in the last minute)
-        filepath, http_message = urllib.urlretrieve(url)
-        current_state = json.load(open(filepath))
-
-        # load beginning-of-day patches
         started = time.time()
-        logger.info('Persisting new state to epoch-patches pair: %s, %s', epoch_path, patches_path)
-        persist_new_state(epoch_path, patches_path, current_state)
-        ended = time.time()
-        logger.info('Finished persisting new state in %0.2f seconds.', ended - started)
+
+        # get the bleeding edge (changes in the last minute)
+        tmp_path = os.path.join(datadir, 'tmp-%d.json' % started)
+        logger.debug('Downloading target json temporarily to file: %s', tmp_path)
+        filepath, http_message = urllib.urlretrieve(url, tmp_path)
+        with open(filepath) as fp:
+            current_state = json.load(fp)
+
+            # load beginning-of-day patches
+            logger.info('Persisting new state to epoch-patches pair: %s, %s', epoch_path, patches_path)
+            persist_new_state(epoch_path, patches_path, current_state)
+            ended = time.time()
+            logger.info('Finished persisting new state in %0.2f seconds.', ended - started)
+
+        # clean up the temporary file
+        logger.debug('Deleting temporary target file: %s', tmp_path)
+        os.remove(tmp_path)
